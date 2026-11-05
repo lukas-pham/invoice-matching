@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HDon><DLHDon>
+<TTChung><PBan>2.1.0</PBan><THDon>HÓA ĐƠN GIÁ TRỊ GIA TĂNG</THDon><KHMSHDon>C</KHMSHDon><KHHDon>26TVS</KHHDon><SHDon>00000301</SHDon><NLap>2026-10-31</NLap><DVTTe>VND</DVTTe></TTChung>
+<NDHDon>
+<NBan><Ten>Công ty TNHH Dịch Vụ Vệ Sinh Xanh</Ten><MST>0401122334</MST></NBan>
+<NMua><Ten>Công ty Demo</Ten><MST>0109999999</MST></NMua>
+<DSHHDVu><HHDVu><STT>1</STT><MHHDVu>CLEAN-M</MHHDVu><THHDVu>Dịch vụ vệ sinh văn phòng tháng 10/2026</THHDVu><DVTinh>tháng</DVTinh><SLuong>1</SLuong><DGia>15000000</DGia><ThTien>15000000</ThTien><TSuat>8%</TSuat></HHDVu></DSHHDVu>
+<TToan><TgTCThue>15000000</TgTCThue><TgTThue>1200000</TgTThue><TgTTTBSo>16200000</TgTTTBSo></TToan>
+</NDHDon>
+<TTKhac><TTin><TTruong>SoDonMuaHang</TTruong><KDLieu>string</KDLieu><DLieu>PO-2001</DLieu></TTin></TTKhac>
+</DLHDon></HDon>

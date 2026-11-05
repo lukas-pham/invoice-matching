@@ -1,0 +1,64 @@
+[
+  {
+    "file": "01-clean-3way.xml",
+    "expectedExceptions": []
+  },
+  {
+    "file": "02-duplicate-of-01.xml",
+    "expectedExceptions": [
+      "DUPLICATE"
+    ]
+  },
+  {
+    "file": "03-price-variance.xml",
+    "expectedExceptions": [
+      "PRICE_VARIANCE"
+    ]
+  },
+  {
+    "file": "04-qty-over-received.xml",
+    "expectedExceptions": [
+      "QTY_OVER_RECEIVED"
+    ]
+  },
+  {
+    "file": "05-missing-po.xml",
+    "expectedExceptions": [
+      "MISSING_PO"
+    ]
+  },
+  {
+    "file": "06-arithmetic-total.xml",
+    "expectedExceptions": [
+      "ARITHMETIC"
+    ]
+  },
+  {
+    "file": "07-service-2way.xml",
+    "expectedExceptions": []
+  },
+  {
+    "file": "08-renamed-line.xml",
+    "expectedExceptions": [
+      "UNMATCHED_LINE"
+    ]
+  },
+  {
+    "file": "09-adjustment-unknown-original.xml",
+    "expectedExceptions": [
+      "RELATED_INVOICE_MISSING"
+    ]
+  },
+  {
+    "file": "10-injection-in-line-name.xml",
+    "expectedExceptions": [
+      "PRICE_VARIANCE"
+    ]
+  },
+  {
+    "file": "11-near-duplicate.xml",
+    "expectedExceptions": [
+      "POSSIBLE_DUPLICATE"
+    ]
+  }
+]

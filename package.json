@@ -1,0 +1,41 @@
+{
+  "name": "invoice-matching",
+  "private": true,
+  "type": "module",
+  "description": "Supplier invoice matching (2-way / 3-way) with AI extraction, code-based matching, segregation of duties and an append-only audit trail.",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "concurrently -n api,web \"tsx watch src/server/index.ts\" \"vite\"",
+    "start": "tsx src/server/index.ts",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "db:migrate": "prisma migrate deploy",
+    "db:seed": "tsx src/server/seed.ts",
+    "samples": "tsx src/server/generateSamples.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.5.0",
+    "@prisma/client": "^6.19.0",
+    "express": "^4.21.2",
+    "fast-xml-parser": "^4.5.1",
+    "multer": "^1.4.5-lts.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/multer": "^1.4.12",
+    "@types/node": "^22.10.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.0",
+    "prisma": "^6.19.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3",
+    "vitest": "^2.1.8"
+  }
+}

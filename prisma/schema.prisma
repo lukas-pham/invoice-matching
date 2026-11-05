@@ -1,0 +1,138 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    String   @id
+  name  String
+  roles String[] // clerk | processor | approver | admin
+  team  String? // purchasing | warehouse | requester | accounting
+
+  @@map("users")
+}
+
+model Vendor {
+  taxId String @id @map("tax_id")
+  name  String
+  email String?
+
+  @@map("vendors")
+}
+
+model PurchaseOrder {
+  number      String @id
+  vendorTaxId String @map("vendor_tax_id")
+  type        String // goods | service
+  requester   String
+  lines       Json // PoLine[]
+
+  @@map("purchase_orders")
+}
+
+model GoodsReceipt {
+  number     String   @id
+  poNumber   String   @map("po_number")
+  receivedAt DateTime @map("received_at")
+  lines      Json // [{ sku, quantity }]
+
+  @@index([poNumber])
+  @@map("goods_receipts")
+}
+
+model Invoice {
+  id           String   @id @default(cuid())
+  source       String // xml | pdf | image
+  fileKey      String   @map("file_key")
+  fileName     String   @map("file_name")
+  status       String // needs_review | exceptions | ready_for_approval | approved | rejected | duplicate
+  data         Json // InvoiceData (current values)
+  aiData       Json?    @map("ai_data") // values as first read (kept for audit)
+  vendorTaxId  String   @map("vendor_tax_id")
+  series       String
+  number       String
+  invoiceDate  String   @map("invoice_date")
+  total        Float
+  kind         String   @default("original")
+  relatedId    String?  @map("related_id")
+  match        Json? // MatchResult
+  confirmedPairs Json   @default("[]") @map("confirmed_pairs")
+  pairSuggestions Json  @default("[]") @map("pair_suggestions")
+  nearDuplicates String[] @default([]) @map("near_duplicates")
+  uploadedBy   String   @map("uploaded_by")
+  editedBy     String[] @default([]) @map("edited_by")
+  approvedBy   String?  @map("approved_by")
+  approvedAt   DateTime? @map("approved_at")
+  createdAt    DateTime @default(now()) @map("created_at")
+  matchedAt    DateTime? @map("matched_at")
+
+  exceptions InvoiceException[]
+
+  @@index([vendorTaxId, number])
+  @@index([status])
+  @@map("invoices")
+}
+
+model InvoiceException {
+  id          String   @id @default(cuid())
+  invoiceId   String   @map("invoice_id")
+  invoice     Invoice  @relation(fields: [invoiceId], references: [id])
+  type        String
+  message     String
+  lineNo      Int?     @map("line_no")
+  route       String // purchasing | warehouse | requester | accounting
+  status      String   @default("open") // open | resolved
+  resolution  String?
+  resolvedBy  String?  @map("resolved_by")
+  resolvedAt  DateTime? @map("resolved_at")
+  explanation String? // AI explanation (3.12)
+  emailDraft  String?  @map("email_draft") // AI draft, never sent by the system
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@index([route, status])
+  @@map("invoice_exceptions")
+}
+
+/// Append-only, hash-chained (see migration trigger + verifyChain).
+model AuditLog {
+  seq       Int      @id @default(autoincrement())
+  at        DateTime @default(now())
+  actor     String
+  action    String
+  invoiceId String?  @map("invoice_id")
+  field     String?
+  aiValue   String?  @map("ai_value")
+  oldValue  String?  @map("old_value")
+  newValue  String?  @map("new_value")
+  prevHash  String   @map("prev_hash")
+  hash      String
+
+  @@map("audit_log")
+}
+
+model Settings {
+  id         Int   @id @default(1)
+  thresholds Json
+
+  @@map("settings")
+}
+
+model AiCall {
+  id            String   @id @default(cuid())
+  promptId      String   @map("prompt_id")
+  promptVersion String   @map("prompt_version")
+  model         String
+  mode          String
+  inputTokens   Int      @map("input_tokens")
+  outputTokens  Int      @map("output_tokens")
+  costUsd       Float    @map("cost_usd")
+  latencyMs     Int      @map("latency_ms")
+  error         String?
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  @@map("ai_calls")
+}

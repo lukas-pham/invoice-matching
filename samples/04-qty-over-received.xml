@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HDon><DLHDon>
+<TTChung><PBan>2.1.0</PBan><THDon>HÓA ĐƠN GIÁ TRỊ GIA TĂNG</THDon><KHMSHDon>C</KHMSHDon><KHHDon>26THB</KHHDon><SHDon>00000202</SHDon><NLap>2026-10-06</NLap><DVTTe>VND</DVTTe></TTChung>
+<NDHDon>
+<NBan><Ten>Công ty CP Thiết Bị Điện Hòa Bình</Ten><MST>0109876543</MST></NBan>
+<NMua><Ten>Công ty Demo</Ten><MST>0109999999</MST></NMua>
+<DSHHDVu><HHDVu><STT>1</STT><MHHDVu>LED-18W</MHHDVu><THHDVu>Bóng đèn LED tuýp 18W</THHDVu><DVTinh>cái</DVTinh><SLuong>200</SLuong><DGia>65000</DGia><ThTien>13000000</ThTien><TSuat>10%</TSuat></HHDVu></DSHHDVu>
+<TToan><TgTCThue>13000000</TgTCThue><TgTThue>1300000</TgTThue><TgTTTBSo>14300000</TgTTTBSo></TToan>
+</NDHDon>
+<TTKhac><TTin><TTruong>SoDonMuaHang</TTruong><KDLieu>string</KDLieu><DLieu>PO-1002</DLieu></TTin></TTKhac>
+</DLHDon></HDon>
